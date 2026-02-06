@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Readify | Reading Flow</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header">
+    <nav class="navbar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">
+          <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
+        </span>
+      </a>
+
+      <button class="hamburger" id="hamburgerBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">The Bookshelf</a></li>
+        <li><a href="tracker.html">Progress Tracker</a></li>
+        <li><a href="recommender.html">Recommender</a></li>
+        <li><a class="active" href="flow.html">Reading Flow</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="section-head">
+        <h2>Reading Flow </h2>
+        <p class="muted">Turn on a cozy sound and mark books as completed.</p>
+      </div>
+
+      <!-- SOUND PANEL -->
+      <div class="flow-card">
+        <h3>Ambient sounds</h3>
+        <p class="muted">Pick one sound .</p>
+
+        <div class="sound-buttons">
+          <button class="btn primary" type="button" id="pianoBtn">Piano</button>
+          <button class="btn primary" type="button" id="rainBtn">Rain</button>
+          <button class="btn primary" type="button" id="cafeBtn">Cafe</button>
+          <button class="btn primary" type="button" id="birdsBtn">birds</button>
+          <button class="btn primary" type="button" id="fireBtn">Fireplace</button>
+          <button class="btn primary" type="button" id="stopBtn">Stop</button>
+        </div>
+
+        <p class="msg" id="soundMsg" aria-live="polite"></p>
+
+        <!-- Audio tags (use your own files in /sound/) -->
+        <audio id="pianoAudio" src="sound/alone-and-sad-soft-piano-music-249239.mp3" loop></audio>
+        <audio id="rainAudio" src="sound/liecio-calming-rain-257596.mp3" loop></audio>
+        <audio id="cafeAudio" src="sound/bransboynd-cafe-lounge-420931.mp3" loop></audio>
+        <audio id="birdsAudio" src="sound/u_svsdvj1jb8-soft-birds-sound-304132.mp3" loop></audio>
+        <audio id="fireAudio" src="sound/sufyan_khalil-fire-place-189399.mp3" loop></audio>
+      </div>
+
+      <!-- COMPLETED BOOKS -->
+      <div class="flow-card" style="margin-top:16px;">
+        <h3>Completed books </h3>
+        <p class="muted">Add a title you finished. It will be saved in your browser .</p>
+
+        <form id="completeForm" class="complete-form">
+          <input id="bookTitleInput" type="text" placeholder="Enter book title..." required>
+          <button class="btn primary" type="submit">Add</button>
+          <button class="btn ghost" id="clearCompletedBtn" type="button">Clear</button>
+        </form>
+
+        <div id="completedList" class="completed-list"></div> 
+      </div>
+    </section>
+  </main>
+
+  <script src="js/flow.js"></script>
+</body>
+</html>

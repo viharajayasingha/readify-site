@@ -1,0 +1,23 @@
+{
+  "name": "Readify",
+  "short_name": "Readify",
+  "description": "Readify is a cozy reading app to discover books, track progress, get recommendations, and stay in reading flow.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F8F4E1",
+  "theme_color": "#74512D",
+  "orientation": "portrait",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

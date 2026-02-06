@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Readify | Progress Tracker</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header">
+    <nav class="navbar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">
+          <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
+        </span>
+      </a>
+
+      <button class="hamburger" id="hamburgerBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">The Bookshelf</a></li>
+        <li><a class="active" href="tracker.html">Progress Tracker</a></li>
+        <li><a href="recommender.html">Recommender</a></li>
+        <li><a href="flow.html">Reading Flow</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="section">
+
+      <div class="section-head">
+        <h2>Reading Progress Tracker</h2>
+        <p class="muted">
+          Enter your reading details. We’ll calculate your progress and finish time.
+        </p>
+      </div>
+
+      <!-- FORM -->
+      <div class="tracker-card">
+        <form id="trackerForm" class="tracker-form">
+
+          <label>
+            Total pages in book
+            <input id="totalPages" type="number" min="1" required>
+          </label>
+
+          <label>
+            Pages read so far
+            <input id="pagesRead" type="number" min="0" required>
+          </label>
+
+          <label>
+            Reading speed (pages per day)
+            <input id="speed" type="number" min="1" required>
+          </label>
+
+          <div class="tracker-actions">
+            <button class="btn primary" type="submit">Calculate</button>
+            <button class="btn ghost" id="saveBtn" type="button">Save</button>
+            <button class="btn ghost" id="clearBtn" type="button">Clear</button>
+          </div>
+
+          <p class="msg" id="formMsg" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="tracker-results" id="resultsBox" style="display:none;">
+        <h3>Your Results</h3>
+
+        <div class="result-row">
+          <p><strong>Completed:</strong> <span id="percentText">0%</span></p>
+          <p><strong>Pages remaining:</strong> <span id="remainingText">0</span></p>
+        </div>
+
+        <!-- PROGRESS BAR (FIXED + ACCESSIBLE) -->
+        <div
+          class="progress-wrap"
+          role="progressbar"
+          aria-label="Reading progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="result-row">
+          <p><strong>Estimated days to finish:</strong> <span id="daysText">0</span></p>
+          <p><strong>Estimated finish date:</strong> <span id="finishDateText">—</span></p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="js/tracker.js"></script>
+</body>
+</html>

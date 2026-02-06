@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Readify | Home</title>
+
+  <!-- PWA + Favicon -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Main Styles -->
+   <!-- Gothic Romance Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="header">
+    <nav class="navbar">
+
+      <!-- Logo -->
+       
+      <a class="brand" href="index.html">
+        <span class="brand-icon">
+          <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
+        </span>
+      </a>
+
+      <!-- Search bar (UI only – like Goodreads/Kindle) -->
+      <form class="nav-search" role="search">
+        <input type="search" placeholder="Search books, authors, genres..." aria-label="Search books">
+        <button type="button" class="search-btn" aria-label="Search">
+          <img src="images/search-icon.png" alt="Search icon">
+        </button>
+      </form>
+
+      <!-- Hamburger button (mobile) -->
+      <button class="hamburger" id="hamburgerBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <!-- Navigation links -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="explorer.html">The Bookshelf</a></li>
+        <li><a href="tracker.html">Progress Tracker</a></li>
+        <li><a href="recommender.html">Recommender</a></li>
+        <li><a href="flow.html">Reading Flow</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main id="main">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero" id="top">
+      <div class="hero-grid">
+
+        <!-- LEFT SIDE -->
+        <div class="hero-left">
+          <p class="tagline">Discover • Track • Stay in flow</p>
+
+          <h1>Find your next great read — and actually finish it.</h1>
+
+          <p class="subtext">
+            A cozy reading space inspired by bookstore shelves and simple reading tools.
+          </p>
+
+          <!-- Auto-rotating quote -->
+          <div class="quote-card">
+            <p class="quote-text" id="quoteText">Loading quote…</p>
+            <p class="quote-author" id="quoteAuthor">—</p>
+          </div>
+
+          <!-- Call to actions -->
+          <div class="hero-actions">
+            <a class="btn primary" href="explorer.html">Browse Books</a>
+            <a class="btn ghost" href="#authorOfDay">Author of the Day</a>
+          </div>
+
+          <!-- Feature hints -->
+          <div class="mini-features">
+            <div class="mini-item">Save progress</div>
+            <div class="mini-item">Random picks</div>
+            <div class="mini-item">Reading flow</div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="hero-right">
+          <div class="shelf">
+
+            <div class="shelf-top">
+              <p class="shelf-title">Trending Shelf</p>
+              <p class="shelf-sub" id="todayHint">Updated daily</p>
+            </div>
+
+            <!-- Book blocks -->
+            <div class="covers" id="trendingShelf">
+              <!-- Trending books will be added by JavaScript -->
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= AUTHOR OF THE DAY ================= -->
+    <section class="section" id="authorOfDay">
+      <div class="section-head">
+        <h2>Author of the Day</h2>
+      </div>
+
+      <div class="author-card">
+        <div class="author-badge">
+          <img src="images/authorBadge.png" alt="Author badge icon">
+        </div>
+
+        <div class="author-info">
+          <h3 id="aName">Loading…</h3>
+          <p class="author-tag" id="aTag"></p>
+          <p class="author-bio" id="aBio"></p>
+
+          <div class="author-actions">
+            <a class="btn primary" href="recommender.html">Get a Recommendation</a>
+            <a class="btn ghost" href="tracker.html">Track My Reading</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CATEGORIES ================= -->
+    <section class="section">
+      <div class="section-head">
+        <h2>Popular categories</h2>
+        <p class="muted">Start with a mood.</p>
+      </div>
+
+      <div class="chips">
+        <a class="chip" href="explorer.html">Fantasy</a>
+        <a class="chip" href="explorer.html">Mystery</a>
+        <a class="chip" href="explorer.html">Sci-Fi</a>
+        <a class="chip" href="explorer.html">Romance</a>
+        <a class="chip" href="explorer.html">Non-fiction</a>
+        <a class="chip" href="explorer.html">Classic</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand"><strong>Readify</strong></p>
+      </div>
+
+      <div class="footer-links">
+        <a href="explorer.html">Explorer</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="recommender.html">Recommender</a>
+        <a href="feedback.html">Feedback</a>
+      </div>
+
+      <div class="newsletter">
+        <h3>Newsletter</h3>
+        <p class="muted">Weekly picks + gentle reading prompts.</p>
+
+        <form id="newsletterForm" class="newsletter-form">
+          <input id="newsletterEmail" type="email" placeholder="you@example.com" required>
+          <button class="btn primary" type="submit">Subscribe</button>
+        </form>
+
+        <p id="newsletterMsg" class="msg" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <small>© <span id="year"></span> Readify</small>
+      <a class="to-top" href="#top">Back to top ↑</a>
+    </div>
+
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

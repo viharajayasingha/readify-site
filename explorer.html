@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Readify | The Bookshelf</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR (same style/classes as home) -->
+  <header class="header">
+    <nav class="navbar">
+
+      <a class="brand" href="index.html">
+        <span class="brand-icon">
+          <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
+        </span>
+      </a>
+
+      <form class="nav-search" role="search">
+        <input type="search" placeholder="Search books, authors, genres..." aria-label="Search books">
+        <button type="button" class="search-btn" aria-label="Search">
+          <img src="images/search-icon.png" alt="Search icon">
+        </button>
+      </form>
+
+      <button class="hamburger" id="hamburgerBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="explorer.html">The Bookshelf</a></li>
+        <li><a href="tracker.html">Progress Tracker</a></li>
+        <li><a href="recommender.html">Recommender</a></li>
+        <li><a href="flow.html">Reading Flow</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="section-head">
+        <h2>The Bookshelf</h2>
+        <p class="muted">Search or filter books. Click a card to see details.</p>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <input id="searchInput" type="text" placeholder="Search by title or author..." aria-label="Search by title or author">
+        <select id="genreSelect" aria-label="Filter by genre">
+          <option value="all">All genres</option>
+        </select>
+        <button class="btn primary" id="clearBtn" type="button">Clear</button>
+      </div>
+
+      <!-- BOOK GRID -->
+      <div class="book-grid" id="bookGrid">
+        <!-- cards inserted by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal" id="bookModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">✖</button>
+
+      <div class="modal-top">
+        <img id="modalCover" class="modal-cover" src="images/placeholder.png" alt="Book cover">
+        <div class="modal-meta">
+          <h3 id="modalTitle">Title</h3>
+          <p class="muted" id="modalAuthor">Author</p>
+          <p class="tag" id="modalGenre">Genre</p>
+        </div>
+      </div>
+
+      <h4>Synopsis</h4>
+      <p id="modalSynopsis"></p>
+
+      <h4>Series (Prequels / Sequels)</h4>
+      <ul id="modalSeriesList"></ul>
+
+      <h4>Ratings & Reviews</h4>
+      <div class="table-wrap">
+        <table class="review-table">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Rating</th>
+              <th>Review</th>
+            </tr>
+          </thead>
+          <tbody id="modalReviewsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/explorer.js"></script>
+</body>
+</html>

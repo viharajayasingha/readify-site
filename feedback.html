@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Readify | Feedback</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header">
+    <nav class="navbar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">
+          <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
+        </span>
+      </a>
+
+      <button class="hamburger" id="hamburgerBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">The Bookshelf</a></li>
+        <li><a href="tracker.html">Progress Tracker</a></li>
+        <li><a href="recommender.html">Recommender</a></li>
+        <li><a href="flow.html">Reading Flow</a></li>
+        <li><a class="active" href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="section-head">
+        <h2>Feedback </h2>
+        <p class="muted">Send us your thoughts and help us improve.</p>
+      </div>
+
+      <!-- FORM -->
+      <div class="feedback-card">
+        <form id="feedbackForm" class="feedback-form" novalidate>
+          <label>
+            Your name
+            <input id="nameInput" type="text" placeholder="e.g., Harshana" required>
+          </label>
+
+          <label>
+            Email
+            <input id="emailInput" type="email" placeholder="e.g., you@example.com" required>
+          </label>
+
+          <label>
+            Message
+            <textarea id="messageInput" rows="5" placeholder="Write your feedback..." required></textarea>
+          </label>
+
+          <div class="feedback-actions">
+            <button class="btn primary" type="submit">Send Feedback</button>
+            <button class="btn ghost" id="clearFeedbackBtn" type="button">Clear Saved</button>
+          </div>
+
+          <p class="msg" id="feedbackMsg" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- FAQ ACCORDION -->
+      <div class="faq-card" style="margin-top:16px;">
+        <h3>FAQ</h3>
+        <p class="muted">Click a question to expand/collapse.</p>
+
+        <div class="faq" id="faqBox">
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              How does Readify save my data?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Readify uses <strong>localStorage</strong> in your browser to store things like newsletter email,
+              progress, saved lists, and completed books.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              Will my data be visible to others?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              No. localStorage is stored only in your browser on your device.
+              It is not sent to a server.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              Why do I need to enter an email?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              We validate email format to make sure it looks correct.
+              For this assignment, it’s stored locally for demonstration purposes.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              Can I clear my feedback?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              Yes. Click <strong>Clear Saved</strong> to remove saved feedback from localStorage.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPTIONAL: show recent saved feedback (simple display) -->
+      <div class="saved-feedback-card" style="margin-top:16px;">
+        <h3>Saved feedback (latest)</h3>
+        <div id="savedFeedbackBox" class="saved-feedback-box"></div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="js/feedback.js"></script>
+</body>
+</html>

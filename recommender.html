@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Readify | Recommender</title>
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header">
+    <nav class="navbar">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">
+          <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
+        </span>
+      </a>
+
+      <button class="hamburger" id="hamburgerBtn"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explorer.html">The Bookshelf</a></li>
+        <li><a href="tracker.html">Progress Tracker</a></li>
+        <li><a class="active" href="recommender.html">Recommender</a></li>
+        <li><a href="flow.html">Reading Flow</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="section">
+      <div class="section-head">
+        <h2>Random Book Recommender</h2>
+        <p class="muted">Choose a genre + length and get a random suggestion.</p>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="reco-card">
+        <div class="reco-controls">
+          <label>
+            Genre
+            <select id="genreSelect">
+              <option value="all">All genres</option>
+            </select>
+          </label>
+
+          <label>
+            Length
+            <select id="lengthSelect">
+              <option value="all">Any length</option>
+              <option value="short">Short (≤ 250 pages)</option>
+              <option value="medium">Medium (251–450 pages)</option>
+              <option value="long">Long (451+ pages)</option>
+            </select>
+          </label>
+
+          <div class="reco-buttons">
+            <button class="btn primary" id="pickBtn" type="button">Pick a Book </button>
+            <button class="btn ghost" id="againBtn" type="button">Pick Again</button>
+          </div>
+
+          <p class="msg" id="recoMsg" aria-live="polite"></p>
+        </div>
+
+        <!-- RESULT -->
+        <div class="reco-result" id="resultBox" style="display:none;">
+          <div class="reco-result-top">
+            <img id="resultCover" class="reco-cover" src="images/placeholder.png" alt="Recommended book cover">
+            <div>
+              <h3 id="resultTitle" class="reco-title">Title</h3>
+              <p id="resultAuthor" class="muted">Author</p>
+              <p class="tag" id="resultGenre">Genre</p>
+              <p class="muted">Pages: <span id="resultPages">0</span></p>
+
+              <div class="reco-actions">
+                <button class="btn primary" id="saveBtn" type="button">Save to Reading List</button>
+                <a class="btn ghost" id="viewInExplorer" href="explorer.html">View in Explorer</a>
+              </div>
+            </div>
+          </div>
+
+          <p class="reco-synopsis" id="resultSynopsis"></p>
+        </div>
+      </div>
+
+      <!-- SAVED LIST -->
+      <div class="saved-card">
+        <div class="saved-head">
+          <h3>My Reading List</h3>
+          <button class="btn ghost" id="clearListBtn" type="button">Clear List</button>
+        </div>
+
+        <div id="savedList" class="saved-list">
+          <!-- saved items inserted by JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <script src="js/data.js"></script>
+  <script src="js/recommender.js"></script>
+</body>
+</html>
