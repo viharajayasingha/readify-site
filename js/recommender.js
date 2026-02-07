@@ -7,11 +7,10 @@
 ========================= */
 
 /* ---------- 0) BOOK DATA ---------- */
-// books comes from data.js
 if (!window.books) {
   console.error("Books not found. Make sure recommender.html loads data.js BEFORE recommender.js");
 }
-const books = window.books || [];
+const BOOKS = window.books || [];
 
 /* ---------- 1) HAMBURGER MENU ---------- */
 const hamburgerBtn = document.getElementById("hamburgerBtn");
@@ -68,11 +67,10 @@ function getLengthBucket(pages) {
 function fillGenres() {
   if (!genreSelect) return;
 
-  // prevent duplicates if called again
   genreSelect.innerHTML = "";
 
   const genres = ["all"];
-  books.forEach(function (b) {
+  BOOKS.forEach(function (b) {
     if (!genres.includes(b.genre)) genres.push(b.genre);
   });
 
@@ -89,10 +87,9 @@ function getFilteredBooks() {
   const chosenGenre = genreSelect ? genreSelect.value : "all";
   const chosenLen = lengthSelect ? lengthSelect.value : "all";
 
-  return books.filter(function (b) {
+  return BOOKS.filter(function (b) {
     const matchGenre = chosenGenre === "all" || b.genre === chosenGenre;
 
-    // if pages missing in some books, treat as medium (safe)
     const pages = Number(b.pages) || 350;
     const matchLen = chosenLen === "all" || getLengthBucket(pages) === chosenLen;
 
@@ -114,7 +111,6 @@ function pickRandomBook() {
   const randomIndex = Math.floor(Math.random() * filtered.length);
   currentPick = filtered[randomIndex];
 
-  // show on screen
   if (resultCover) {
     resultCover.src = currentPick.cover;
     resultCover.alt = currentPick.title + " cover";
@@ -128,14 +124,12 @@ function pickRandomBook() {
   if (resultBox) resultBox.style.display = "block";
   showMsg("Here’s your recommendation!", false);
 
-  // animation (only if you have .shake in CSS)
   if (resultBox) {
     resultBox.classList.remove("shake");
     void resultBox.offsetWidth;
     resultBox.classList.add("shake");
   }
 
-  // store selected book for Explorer to open (use id = best)
   localStorage.setItem("readify_selected_book", JSON.stringify({ id: currentPick.id }));
 }
 
