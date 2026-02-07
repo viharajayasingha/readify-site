@@ -9,9 +9,10 @@
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Main Styles -->
-   <!-- Gothic Romance Fonts -->
+  <!-- Gothic Romance Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -22,7 +23,6 @@
     <nav class="navbar">
 
       <!-- Logo -->
-       
       <a class="brand" href="index.html">
         <span class="brand-icon">
           <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
@@ -179,8 +179,19 @@
         <h3>Newsletter</h3>
         <p class="muted">Weekly picks + gentle reading prompts.</p>
 
-        <form id="newsletterForm" class="newsletter-form">
-          <input id="newsletterEmail" type="email" placeholder="you@example.com" required>
+        <!-- ✅ FIXED Newsletter Form -->
+        <form id="newsletterForm" class="newsletter-form" action="#">
+          <label for="newsletterEmail" class="sr-only">Email address</label>
+
+          <input
+            id="newsletterEmail"
+            name="newsletterEmail"
+            type="email"
+            placeholder="you@example.com"
+            required
+            aria-label="Email address"
+          >
+
           <button class="btn primary" type="submit">Subscribe</button>
         </form>
 
