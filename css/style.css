@@ -1,19 +1,16 @@
-/* =========================
-   READIFY – SIMPLE STYLES
-   Color palette:
-   #F8F4E1  background
-   #AF8F6F  surface
-   #74512D  primary
-   #543310  text
-========================= */
+/* Color palette:
+   #F8F4E1 = background (light cream)
+   #AF8F6F = surface color (cards / sections)
+   #74512D = main button color
+   #543310 = main text color */
 
-/* BASIC RESET */
+/* Basic reset makes layout more predictable */
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  margin: 0; /*remove default spacing*/
   font-family: "Libre Baskerville", Baskerville, serif;
   background-color: #F8F4E1;
   color: #543310;
@@ -40,35 +37,33 @@ h1, h2, h3, h4, h5, h6 {
 
 
 a {
-  text-decoration: none;
+  text-decoration: none;/*remove underline*/
   color: inherit;
 }
 
 .muted {
-  opacity: 0.85;
+  opacity: 0.85; /*makes the seondary text lighter*/
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* Navbar */
 
 .header {
-  position: sticky;
+  position: sticky; 
   top: 0;
   background-color: #F8F4E1;
   border-bottom: 1px solid rgba(84, 51, 16, 0.2);
-  z-index: 1000; 
+  z-index: 1000; /* keeps navbar above other sections */
 }
 
 .navbar {
-  max-width: 1100px;
+  max-width: 1100px; /*keeps content centered*/
   margin: auto;
   padding: 12px 16px;
 
-  display: flex;
+  display: flex; /*items in a row*/
   align-items: center;
   gap: 12px;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; /*stops items going to the next line*/
 }
 
 /* Logo */
@@ -87,12 +82,12 @@ a {
 .brand-icon img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* keep logo inside without cropping */
 }
 
 /* Search bar */
 .nav-search {
-  flex: 1;
+  flex: 1; /* takes remaining space */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -104,10 +99,10 @@ a {
 }
 
 .nav-search input {
-  flex: 1;
+  flex: 1; /* input expands */
   border: none;
   background: transparent;
-  outline: none;
+  outline: none; /* removes the default outline */
 }
 
 .search-btn {
@@ -121,9 +116,9 @@ a {
   height: 18px;
 }
 
-/* Menu links */
+/* Menu links (desktop) */
 .nav-menu {
-  list-style: none;
+  list-style: none; /* remove bullet points */
   margin: 0;
   padding: 0;
 
@@ -135,23 +130,21 @@ a {
   padding: 8px 10px;
   border-radius: 10px;
   font-weight: bold;
-  white-space: nowrap;
+  white-space: nowrap;/* prevents text breaking */
 }
 
 .nav-menu a:hover {
-  background: rgba(175, 143, 111, 0.2);
+  background: rgba(175, 143, 111, 0.2);/* hover highlight */
 }
 
 .nav-menu a.active {
-  background: rgba(116, 81, 45, 0.15);
+  background: rgba(116, 81, 45, 0.15); /* active page highlight */
 }
 
-/* =========================
-   HAMBURGER (MOBILE)
-========================= */
+/* Hamburger menu (mobile) */
 
 .hamburger {
-  display: none;
+  display: none; /* hidden on desktop */
   width: 42px;
   height: 42px;
   border-radius: 10px;
@@ -167,7 +160,7 @@ a {
   margin: 5px auto;
 }
 
-/* FORCE hamburger lines to show */
+/* force hamburger lines to show */
 #hamburgerBtn {
   background: #F8F4E1 !important;
   border: 1px solid rgba(84, 51, 16, 0.3) !important;
@@ -182,17 +175,15 @@ a {
 }
 
 #hamburgerBtn .bar {
-  display: block !important;          /* ✅ IMPORTANT (spans are inline by default) */
+  display: block !important;          
   width: 22px !important;
-  height: 3px !important;             /* make it thicker so you clearly see it */
+  height: 3px !important;            
   background-color: #543310 !important;
   border-radius: 2px !important;
 }
 
 
-/* =========================
-   HERO SECTION (GRID)
-========================= */
+/* Hero Section */
 
 .hero {
   max-width: 1100px;
@@ -202,13 +193,13 @@ a {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* 2 columns */
   gap: 20px;
 }
 
 /* Left side */
 .tagline {
-  display: inline-block;
+  display: inline-block; /*shrink to content width*/
   padding: 8px 12px;
   border-radius: 999px;
   background: rgba(175, 143, 111, 0.18);
@@ -225,7 +216,7 @@ a {
   margin-bottom: 14px;
 }
 
-/* Quote */
+/* Quote Card */
 .quote-card {
   padding: 16px;
   border-radius: 16px;
@@ -275,17 +266,15 @@ a {
   font-weight: bold;
 }
 
-/* =========================
-   BOOK SHELF
-========================= */
-
+/* Book Shelf */
+/* Shelf container */
 .shelf {
   padding: 14px;
   border-radius: 16px;
   background: rgba(248, 244, 225, 0.7);
   border: 1px solid rgba(84, 51, 16, 0.2);
 }
-
+/* Shelf header (title + action link) */
 .shelf-top {
   display: flex;
   justify-content: space-between;
@@ -294,21 +283,21 @@ a {
 
 .covers {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 1fr);  /* 5-column grid */
   gap: 10px;
 }
 
 .cover {
-  height: 210px;                 /* fixed card height */
+  height: 210px;                 
   padding: 10px;
   border-radius: 12px;
   border: 1px solid rgba(84, 51, 16, 0.2);
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* stack title + author */
   gap: 6px;
 
-  overflow: hidden; 
+  overflow: hidden; /* hide overflow text */
   cursor: pointer; 
 }
 
@@ -334,16 +323,14 @@ a {
   text-overflow: ellipsis;
 }
 
-/* Color variations */
+/* Background color variations for book cards */
 .c1 { background: rgba(175, 143, 111, 0.35); }
 .c2 { background: rgba(116, 81, 45, 0.18); }
 .c3 { background: rgba(175, 143, 111, 0.22); }
 .c4 { background: rgba(116, 81, 45, 0.12); }
 .c5 { background: rgba(175, 143, 111, 0.28); }
 
-/* =========================
-   SECTIONS
-========================= */
+/* Generic section wrapper */
 
 .section {
   max-width: 1100px;
@@ -382,7 +369,7 @@ a {
 .chips {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* allow wrapping on small screens */
 }
 
 .chip {
@@ -393,9 +380,7 @@ a {
   font-weight: bold;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* Footer */
 
 .footer {
   margin-top: 20px;
@@ -409,7 +394,7 @@ a {
   margin: auto;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr; /* 3-column footer */
   gap: 12px;
 }
 
@@ -421,7 +406,7 @@ a {
 
 .newsletter-form input {
   padding: 8px;
-  flex: 1;
+  flex: 1; /* take remaining space */
 }
 
 .footer-bottom {
@@ -432,28 +417,28 @@ a {
   justify-content: space-between;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
+/* Mobile Responsiveness */
 
 @media (max-width: 900px) {
 
+  /* Hide search bar to save space on smaller screens */
   .nav-search {
     display: none;
   }
 
   .hamburger {
     display: flex;
-    margin-left: auto;
+    margin-left: auto; /* push hamburger to the right */
   }
 
+  /* Mobile navigation menu (hidden by default) */
   .nav-menu {
-    position: absolute;
-    top: 70px;
+    position: absolute; /* overlay dropdown menu */
+    top: 70px; /*below nav bar*/
     left: 16px;
     right: 16px;
 
-    flex-direction: column;
+    flex-direction: column;  /* stack links vertically */
     background: #F8F4E1;
     padding: 12px;
     border-radius: 12px;
@@ -461,6 +446,7 @@ a {
     display: none;
   }
 
+  /*show mobile menu when js adds .show*/
   .nav-menu.show {
     display: flex;
   }
@@ -469,10 +455,12 @@ a {
     grid-template-columns: 1fr;
   }
 
+  /* Stack hero content into a single column */
   .covers {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  /* Stack footer sections vertically */
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -482,14 +470,12 @@ a {
 .book-cover-img {
   width: 100%;
   height: 110px;
-  object-fit: cover;
+  object-fit: cover; /* prevent image distortion */
   border-radius: 8px;
   margin-bottom: 6px;
 }
 
-/* =========================
-   EXPLORER PAGE (simple)
-========================= */
+/* Explore page */
 
 .page {
   max-width: 1100px;
@@ -504,20 +490,21 @@ a {
   margin: 14px 0 18px;
 }
 
+/* Filter input and dropdown styling */
 .filter-bar input,
 .filter-bar select {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid rgba(84, 51, 16, 0.2);
   background: #F8F4E1;
-  flex: 1;
-  min-width: 220px;
+  flex: 1; /* grow evenly */
+  min-width: 220px; /* prevent too small inputs */
 }
 
 /* Book grid */
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* 5-column grid */
   gap: 12px;
 }
 
@@ -526,7 +513,7 @@ a {
   border: 1px solid rgba(84, 51, 16, 0.2);
   border-radius: 14px;
   background: rgba(248, 244, 225, 0.7);
-  overflow: hidden;
+  overflow: hidden; /* crop overflowing content */
   cursor: pointer;
 }
 
@@ -536,16 +523,16 @@ a {
     object-fit: cover;    
     display: block;
 }
-
+/* Book card content wrapper */
 .book-card-body {
   padding: 10px;
 }
-
+/* Book title */
 .book-card-title {
   margin: 0 0 4px;
   font-weight: bold;
 }
-
+/* Book author text */
 .book-card-author {
   margin: 0 0 8px;
   opacity: 0.9;
@@ -564,31 +551,32 @@ a {
 
 /* Modal */
 .modal {
-  position: fixed;
-  inset: 0;
+  position: fixed;/* cover entire viewport */
+  inset: 0; /* shorthand for top/right/bottom/left */
   background: rgba(0,0,0,0.4);
   display: none;
   padding: 20px;
-  z-index: 999;
+  z-index: 999;  /* appear above other elements */
 }
-
+/* Show modal when JS adds .show */
 .modal.show {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Modal content container */
 .modal-content {
   width: min(900px, 96vw);
   max-height: 85vh;
-  overflow: auto;
+  overflow: auto;  /* enable scrolling */
   background: #F8F4E1;
   border-radius: 16px;
   border: 1px solid rgba(84, 51, 16, 0.25);
   padding: 16px;
   position: relative;
 }
-
+/* Modal close button */
 .modal-close {
   position: absolute;
   top: 10px;
@@ -615,6 +603,7 @@ a {
   border: 1px solid rgba(84, 51, 16, 0.2);
 }
 
+/* Genre tag inside modal */
 .tag {
   display: inline-block;
   padding: 6px 10px;
@@ -626,7 +615,7 @@ a {
 
 /* Review table */
 .table-wrap {
-  overflow-x: auto;
+  overflow-x: auto;/* Enable horizontal scroll for tables on small screens */
 }
 
 .review-table {
@@ -647,7 +636,9 @@ a {
 }
 
 /* Responsive */
+/* Tablet and small desktop responsive*/
 @media (max-width: 1100px) {
+  /* Stack author card content vertically */
   .author-card{
     flex-direction: column;
     align-items: flex-start;
@@ -660,6 +651,7 @@ a {
     gap: 10px;
   }
 
+  /* Reduce book grid columns */
   .book-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -669,16 +661,15 @@ a {
     align-items: flex-start;
   }
 
+  /* Larger cover image on smaller screens */
   .modal-cover {
     width: 140px;
     height: 190px;
   }
 }
 
-/* =========================
-   TRACKER PAGE (simple)
-========================= */
-
+/* Tracker Page */
+/* Main tracker card container */
 .tracker-card {
   border: 1px solid rgba(84, 51, 16, 0.2);
   border-radius: 16px;
@@ -688,8 +679,8 @@ a {
 }
 
 .tracker-form {
-  display: grid;
-  gap: 12px;
+  display: grid; /* vertical form layout */
+  gap: 12px; 
 }
 
 .tracker-form label {
@@ -708,7 +699,7 @@ a {
 .tracker-actions {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* prevent overlap on small screens */
 }
 
 .tracker-results {
@@ -732,28 +723,26 @@ a {
   height: 16px;
   border-radius: 999px;
   background: rgba(84, 51, 16, 0.12);
-  overflow: hidden;
+  overflow: hidden; /* hide overflow of bar */
   margin: 10px 0 12px;
 }
 
 .progress-bar {
   height: 100%;
-  width: 0%;
+  width: 0%;  /* updated dynamically via JS */
   background: #74512D;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease; /* smooth progress animation */
 }
 
-/* =========================
-   RECOMMENDER PAGE (simple)
-========================= */
-
+/* Recommender Page */
+/* Main recommender card */
 .reco-card {
   border: 1px solid rgba(84, 51, 16, 0.2);
   border-radius: 16px;
   background: rgba(248, 244, 225, 0.7);
   padding: 14px;
 }
-
+/* Recommender control section */
 .reco-controls {
   display: grid;
   gap: 12px;
@@ -766,6 +755,7 @@ a {
   font-weight: bold;
 }
 
+/* Dropdown inputs */
 .reco-controls select {
   padding: 10px 12px;
   border-radius: 10px;
@@ -773,17 +763,19 @@ a {
   background: #F8F4E1;
 }
 
+
 .reco-buttons {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
-
+/* Recommended book result section */
 .reco-result {
   margin-top: 16px;
   border-top: 1px solid rgba(84, 51, 16, 0.2);
   padding-top: 16px;
 }
+
 
 .reco-result-top {
   display: flex;
@@ -791,7 +783,7 @@ a {
   align-items: flex-start;
   flex-wrap: wrap;
 }
-
+/* Recommended book cover image */
 .reco-cover {
   width: 120px;
   height: 170px;
@@ -799,7 +791,7 @@ a {
   border-radius: 12px;
   border: 1px solid rgba(84, 51, 16, 0.2);
 }
-
+/* Recommender action buttons */
 .reco-actions {
   display: flex;
   gap: 10px;
@@ -807,6 +799,7 @@ a {
   margin-top: 10px;
 }
 
+/* Book synopsis text */
 .reco-synopsis {
   margin-top: 10px;
   opacity: 0.9;
@@ -872,7 +865,7 @@ a {
 }
 
 .saved-remove {
-  margin-left: auto;
+  margin-left: auto;  /* push button to right */
   border: 1px solid rgba(84, 51, 16, 0.25);
   background: rgba(175, 143, 111, 0.18);
   border-radius: 10px;
@@ -880,10 +873,8 @@ a {
   padding: 8px 10px;
 }
 
-/* =========================
-   FLOW PAGE (simple)
-========================= */
-
+/* Flow Page */
+/* Flow page card container */
 .flow-card {
   border: 1px solid rgba(84, 51, 16, 0.2);
   border-radius: 16px;
@@ -897,7 +888,7 @@ a {
   flex-wrap: wrap;
   margin-top: 10px;
 }
-
+/* Completed book input form */
 .complete-form {
   display: flex;
   gap: 10px;
@@ -940,10 +931,8 @@ a {
   padding: 8px 10px;
 }
 
-/* =========================
-   FEEDBACK PAGE (simple)
-========================= */
-
+/* Feedback */
+/* Feedback, FAQ and saved feedback cards */
 .feedback-card,
 .faq-card,
 .saved-feedback-card {
@@ -952,7 +941,7 @@ a {
   background: rgba(248, 244, 225, 0.7);
   padding: 14px;
 }
-
+/* Feedback form layout */
 .feedback-form {
   display: grid;
   gap: 12px;

@@ -1,23 +1,16 @@
-/* =========================================================
-   Readify – service-worker.js (Beginner friendly)
+/* 
+   - Precaches core files for offline use
+   - Uses network-first for HTML (fresh pages)
+   - Uses cache-first for assets (fast load)
+ */
 
-   ✅ What this does:
-   1) Pre-caches your main pages + CSS + JS (so they load faster)
-   2) Works offline (shows a cached page if internet is off)
-   3) Caches images + sounds when they are visited (runtime caching)
 
-   ✅ IMPORTANT:
-   - This file should be in your PROJECT ROOT (same level as index.html)
-   - You must register it from a normal JS file (ex: js/main.js)
-========================================================= */
-
-/* Change this when you update files (forces new cache) */
 const CACHE_VERSION = "readify-v1";
 
 /* Main cache name */
 const CACHE_NAME = `readify-cache-${CACHE_VERSION}`;
 
-/* Files to pre-cache (add/remove based on your project) */
+/* Files to pre-cache */
 const PRECACHE_URLS = [
   /* Pages */
   "./",
@@ -45,7 +38,7 @@ const PRECACHE_URLS = [
   "./favicon.ico"
 ];
 
-/* 1) INSTALL: cache important files */
+/* install: cache important files */
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -57,7 +50,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-/* 2) ACTIVATE: delete old caches */
+/* active: delete old caches */
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -69,7 +62,7 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-/* Helper: cache-first (good for images, css, js) */
+/* helper: cache-first (good for images, css, js) */
 async function cacheFirst(request) {
   const cached = await caches.match(request);
   if (cached) return cached;
@@ -80,7 +73,7 @@ async function cacheFirst(request) {
   return response;
 }
 
-/* Helper: network-first (good for HTML pages) */
+/* helper: network-first (good for HTML pages) */
 async function networkFirst(request) {
   try {
     const response = await fetch(request);
@@ -97,7 +90,7 @@ async function networkFirst(request) {
   }
 }
 
-/* 3) FETCH: decide how to handle requests */
+/* fetch: decide how to handle requests */
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 

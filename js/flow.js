@@ -1,10 +1,4 @@
-/* =========================
-   READIFY – FLOW (Beginner Friendly)
-   - Ambient sounds (toggle)
-   - Completed books list (localStorage)
-========================= */
-
-/* 1) HAMBURGER MENU */
+//hamburger menu
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu");
 
@@ -16,9 +10,7 @@ if (hamburgerBtn && navMenu) {
   });
 }
 
-/* =========================
-   2) AMBIENT SOUNDS
-========================= */
+//sounds
 
 // Buttons
 const pianoBtn = document.getElementById("pianoBtn");
@@ -35,10 +27,10 @@ const cafeAudio = document.getElementById("cafeAudio");
 const birdsAudio = document.getElementById("birdsAudio");
 const fireAudio = document.getElementById("fireAudio");
 
-// Message
+// Message shown under buttons
 const soundMsg = document.getElementById("soundMsg");
 
-/* Stop all sounds */
+//stops all sounds
 function stopAllSounds() {
   const all = [pianoAudio, rainAudio, cafeAudio, birdsAudio, fireAudio];
 
@@ -49,9 +41,9 @@ function stopAllSounds() {
   });
 }
 
-/* Play one sound */
+//play one sound
 function playSound(audioEl, messageText) {
-  stopAllSounds();
+  stopAllSounds();//stop other sounds first 
 
   if (!audioEl) return;
 
@@ -63,7 +55,7 @@ function playSound(audioEl, messageText) {
   });
 }
 
-/* Button events */
+//Button events
 if (pianoBtn) {
   pianoBtn.addEventListener("click", function () {
     playSound(pianoAudio, "Piano is playing.");
@@ -101,10 +93,7 @@ if (stopBtn) {
   });
 }
 
-/* =========================
-   3) COMPLETED BOOKS (localStorage)
-========================= */
-
+//save completed books to local storage
 const COMPLETE_KEY = "readify_completed_books";
 
 const completeForm = document.getElementById("completeForm");
@@ -124,7 +113,7 @@ function loadCompleted() {
 function saveCompleted(list) {
   localStorage.setItem(COMPLETE_KEY, JSON.stringify(list));
 }
-
+//show completed books on page
 function renderCompleted() {
   const list = loadCompleted();
   completedList.innerHTML = "";
@@ -143,6 +132,7 @@ function renderCompleted() {
       <button type="button" class="remove-btn">Remove</button>
     `;
 
+    //remove a single book
     row.querySelector(".remove-btn").addEventListener("click", function () {
       const updated = loadCompleted();
       updated.splice(index, 1);
@@ -153,7 +143,7 @@ function renderCompleted() {
     completedList.appendChild(row);
   });
 }
-
+//add a completed book
 if (completeForm) {
   completeForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -181,6 +171,7 @@ if (completeForm) {
   });
 }
 
+//clear all completed books
 if (clearCompletedBtn) {
   clearCompletedBtn.addEventListener("click", function () {
     localStorage.removeItem(COMPLETE_KEY);
@@ -188,5 +179,5 @@ if (clearCompletedBtn) {
   });
 }
 
-/* Load list on page load */
+//Load lists
 renderCompleted();

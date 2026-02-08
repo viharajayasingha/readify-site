@@ -43,7 +43,8 @@
 
   <main class="page">
     <section class="section">
-
+      
+      <!-- Page heading and short explanation -->
       <div class="section-head">
         <h2>Reading Progress Tracker</h2>
         <p class="muted">
@@ -51,7 +52,7 @@
         </p>
       </div>
 
-      <!-- FORM -->
+      <!-- User enters book details here -->
       <div class="tracker-card">
         <form id="trackerForm" class="tracker-form">
 
@@ -71,11 +72,13 @@
           </label>
 
           <div class="tracker-actions">
+            <!-- Calculates progress and finish date -->
             <button class="btn primary" type="submit">Calculate</button>
+            <!--save progress to local storage-->
             <button class="btn ghost" id="saveBtn" type="button">Save</button>
             <button class="btn ghost" id="clearBtn" type="button">Clear</button>
           </div>
-
+          <!--message for validation and feedback-->
           <p class="msg" id="formMsg" aria-live="polite"></p>
         </form>
       </div>
@@ -83,13 +86,14 @@
       <!-- RESULTS -->
       <div class="tracker-results" id="resultsBox" style="display:none;">
         <h3>Your Results</h3>
-
+        <!--result section. hidden by default and shown after calculation-->
         <div class="result-row">
+          <!--Percentage completed and remaining pages-->
           <p><strong>Completed:</strong> <span id="percentText">0%</span></p>
           <p><strong>Pages remaining:</strong> <span id="remainingText">0</span></p>
         </div>
 
-        <!-- PROGRESS BAR (FIXED + ACCESSIBLE) -->
+        <!-- progress bar -->
         <div
           class="progress-wrap"
           role="progressbar"

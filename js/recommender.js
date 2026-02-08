@@ -1,18 +1,10 @@
-/* =========================
-   READIFY – RECOMMENDER (Beginner Friendly)
-   - Dropdown filters (genre + length)
-   - Random pick
-   - "Pick again" animation
-   - Save to localStorage reading list
-========================= */
-
-/* ---------- 0) BOOK DATA ---------- */
+//data.js loads first and sets: window.books = [...] If window.books is missing, the page cannot recommend anything
 if (!window.books) {
   console.error("Books not found. Make sure recommender.html loads data.js BEFORE recommender.js");
 }
 const BOOKS = window.books || [];
 
-/* ---------- 1) HAMBURGER MENU ---------- */
+//hamburger menu
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu");
 
@@ -24,7 +16,7 @@ if (hamburgerBtn && navMenu) {
   });
 }
 
-/* ---------- 2) ELEMENTS ---------- */
+//elements
 const genreSelect = document.getElementById("genreSelect");
 const lengthSelect = document.getElementById("lengthSelect");
 const pickBtn = document.getElementById("pickBtn");
@@ -44,30 +36,30 @@ const saveBtn = document.getElementById("saveBtn");
 const savedListEl = document.getElementById("savedList");
 const clearListBtn = document.getElementById("clearListBtn");
 
-/* ---------- 3) STORAGE ---------- */
+//store the user’s saved books list under this key localStorage keeps the list even after refresh.
 const LIST_KEY = "readify_reading_list";
 
-/* ---------- 4) STATE ---------- */
+//currentPick stores the latest recommended book.
 let currentPick = null;
 
-/* ---------- 5) HELPERS ---------- */
+
 function showMsg(text, isError) {
   if (!recoMsg) return;
   recoMsg.textContent = text;
   recoMsg.style.color = isError ? "#b00020" : "#543310";
 }
-
+// Convert page count into a category: short / medium / long
 function getLengthBucket(pages) {
   if (pages <= 250) return "short";
   if (pages <= 450) return "medium";
   return "long";
 }
 
-/* ---------- 6) FILL GENRES ---------- */
+//create a dropdown option based on the genres of the books
 function fillGenres() {
   if (!genreSelect) return;
 
-  genreSelect.innerHTML = "";
+  genreSelect.innerHTML = "";//clear to avoide duplicates
 
   const genres = ["all"];
   BOOKS.forEach(function (b) {
@@ -82,7 +74,7 @@ function fillGenres() {
   });
 }
 
-/* ---------- 7) FILTER BOOKS ---------- */
+//filter books
 function getFilteredBooks() {
   const chosenGenre = genreSelect ? genreSelect.value : "all";
   const chosenLen = lengthSelect ? lengthSelect.value : "all";
@@ -90,6 +82,7 @@ function getFilteredBooks() {
   return BOOKS.filter(function (b) {
     const matchGenre = chosenGenre === "all" || b.genre === chosenGenre;
 
+    // Page count check (if pages missing, it is assumed 350)
     const pages = Number(b.pages) || 350;
     const matchLen = chosenLen === "all" || getLengthBucket(pages) === chosenLen;
 
@@ -97,7 +90,7 @@ function getFilteredBooks() {
   });
 }
 
-/* ---------- 8) PICK RANDOM BOOK ---------- */
+//When user clicks “Pick a Book” or “Pick Again”: Filter books, Pick one random item, Show it on screen
 function pickRandomBook() {
   const filtered = getFilteredBooks();
 
@@ -111,6 +104,7 @@ function pickRandomBook() {
   const randomIndex = Math.floor(Math.random() * filtered.length);
   currentPick = filtered[randomIndex];
 
+  // Show the selected book in result UI
   if (resultCover) {
     resultCover.src = currentPick.cover;
     resultCover.alt = currentPick.title + " cover";
@@ -124,16 +118,18 @@ function pickRandomBook() {
   if (resultBox) resultBox.style.display = "block";
   showMsg("Here’s your recommendation!", false);
 
+  //add shale visual effect
   if (resultBox) {
     resultBox.classList.remove("shake");
     void resultBox.offsetWidth;
     resultBox.classList.add("shake");
   }
 
+  // Save selected book id so Explorer can open that modal
   localStorage.setItem("readify_selected_book", JSON.stringify({ id: currentPick.id }));
 }
 
-/* ---------- 9) READING LIST ---------- */
+//book list
 function loadList() {
   try {
     const raw = localStorage.getItem(LIST_KEY);
@@ -158,6 +154,7 @@ function renderList() {
     return;
   }
 
+  //create a card for each saved book
   list.forEach(function (b, index) {
     const item = document.createElement("div");
     item.className = "saved-item";
@@ -185,10 +182,11 @@ function renderList() {
   });
 }
 
-/* ---------- 10) EVENTS ---------- */
+//events
 if (pickBtn) pickBtn.addEventListener("click", pickRandomBook);
 if (againBtn) againBtn.addEventListener("click", pickRandomBook);
 
+//save current pick into local storage
 if (saveBtn) {
   saveBtn.addEventListener("click", function () {
     if (!currentPick) {
@@ -221,6 +219,6 @@ if (clearListBtn) {
   });
 }
 
-/* ---------- INIT ---------- */
+//fill genre drop down, show any reading lists
 fillGenres();
 renderList();

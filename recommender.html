@@ -43,21 +43,23 @@
 
   <main class="page">
     <section class="section">
+      <!-- Page heading + short description -->
       <div class="section-head">
         <h2>Random Book Recommender</h2>
         <p class="muted">Choose a genre + length and get a random suggestion.</p>
       </div>
 
-      <!-- CONTROLS -->
+      <!-- User selects genre + book length here -->
       <div class="reco-card">
         <div class="reco-controls">
+          <!-- Genre dropdown (JS fills this from data.js) -->
           <label>
             Genre
             <select id="genreSelect">
               <option value="all">All genres</option>
             </select>
           </label>
-
+           <!-- Length dropdown (short/medium/long) -->
           <label>
             Length
             <select id="lengthSelect">
@@ -69,24 +71,29 @@
           </label>
 
           <div class="reco-buttons">
+            <!-- Picks a random book based on filters -->
             <button class="btn primary" id="pickBtn" type="button">Pick a Book </button>
+            <!-- Picks another random book (same logic, just re-runs) -->
             <button class="btn ghost" id="againBtn" type="button">Pick Again</button>
           </div>
 
           <p class="msg" id="recoMsg" aria-live="polite"></p>
         </div>
 
-        <!-- RESULT -->
+        <!-- Hidden first, shown only after user picks a book -->
         <div class="reco-result" id="resultBox" style="display:none;">
           <div class="reco-result-top">
+            <!-- Book cover image (JS updates src + alt) -->
             <img id="resultCover" class="reco-cover" src="images/placeholder.png" alt="Recommended book cover">
             <div>
+              <!--book info, filled by js-->
               <h3 id="resultTitle" class="reco-title">Title</h3>
               <p id="resultAuthor" class="muted">Author</p>
               <p class="tag" id="resultGenre">Genre</p>
               <p class="muted">Pages: <span id="resultPages">0</span></p>
-
+              <!--actions. save to list and go to explorer-->
               <div class="reco-actions">
+                <!--save the book to local storage-->
                 <button class="btn primary" id="saveBtn" type="button">Save to Reading List</button>
                 <a class="btn ghost" id="viewInExplorer" href="explorer.html">View in Explorer</a>
               </div>
@@ -97,7 +104,7 @@
         </div>
       </div>
 
-      <!-- SAVED LIST -->
+      <!-- Saves list -->
       <div class="saved-card">
         <div class="saved-head">
           <h3>My Reading List</h3>

@@ -49,6 +49,7 @@
       </div>
 
       <!-- FORM -->
+      <!-- User can enter feedback which is saved using localStorage -->
       <div class="feedback-card">
         <form id="feedbackForm" class="feedback-form" novalidate>
           <label>
@@ -67,7 +68,9 @@
           </label>
 
           <div class="feedback-actions">
+            <!-- saves feedback to local storage -->
             <button class="btn primary" type="submit">Send Feedback</button>
+            <!-- Clears saved feedback from localStorage -->
             <button class="btn ghost" id="clearFeedbackBtn" type="button">Clear Saved</button>
           </div>
 
@@ -75,7 +78,7 @@
         </form>
       </div>
 
-      <!-- FAQ ACCORDION -->
+      <!-- Accordion-style FAQ section controlled using JavaScript -->
       <div class="faq-card" style="margin-top:16px;">
         <h3>FAQ</h3>
         <p class="muted">Click a question to expand/collapse.</p>
@@ -126,7 +129,7 @@
         </div>
       </div>
 
-      <!-- OPTIONAL: show recent saved feedback (simple display) -->
+      <!-- show recent saved feedback -->
       <div class="saved-feedback-card" style="margin-top:16px;">
         <h3>Saved feedback (latest)</h3>
         <div id="savedFeedbackBox" class="saved-feedback-box"></div>

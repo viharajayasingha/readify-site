@@ -9,7 +9,7 @@
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Gothic Romance Fonts -->
+  <!-- Gothic  Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Main Styles -->
@@ -18,7 +18,7 @@
 
 <body>
 
-  <!-- ================= NAVBAR ================= -->
+  <!--NavBar -->
   <header class="header">
     <nav class="navbar">
 
@@ -29,7 +29,7 @@
         </span>
       </a>
 
-      <!-- Search bar (UI only – like Goodreads/Kindle) -->
+      <!-- Search bar -->
       <form class="nav-search" role="search">
         <input type="search" placeholder="Search books, authors, genres..." aria-label="Search books">
         <button type="button" class="search-btn" aria-label="Search">
@@ -37,7 +37,7 @@
         </button>
       </form>
 
-      <!-- Hamburger button (mobile) -->
+      <!--  Hamburger menu button for mobile and tablet views. Controlled using JavaScript -->
       <button class="hamburger" id="hamburgerBtn"
         aria-label="Open menu"
         aria-expanded="false"
@@ -60,14 +60,14 @@
     </nav>
   </header>
 
-  <!-- ================= MAIN CONTENT ================= -->
+  <!--  Main Content -->
   <main id="main">
 
-    <!-- ================= HERO SECTION ================= -->
+    <!-- Hero Section -->
     <section class="hero" id="top">
       <div class="hero-grid">
 
-        <!-- LEFT SIDE -->
+        <!-- Left side of the hero section -->
         <div class="hero-left">
           <p class="tagline">Discover • Track • Stay in flow</p>
 
@@ -77,7 +77,7 @@
             A cozy reading space inspired by bookstore shelves and simple reading tools.
           </p>
 
-          <!-- Auto-rotating quote -->
+          <!-- Quote section dynamically updated using JavaScript -->
           <div class="quote-card">
             <p class="quote-text" id="quoteText">Loading quote…</p>
             <p class="quote-author" id="quoteAuthor">—</p>
@@ -97,7 +97,7 @@
           </div>
         </div>
 
-        <!-- RIGHT SIDE -->
+        <!-- Right side of the hero section -->
         <div class="hero-right">
           <div class="shelf">
 
@@ -117,7 +117,7 @@
       </div>
     </section>
 
-    <!-- ================= AUTHOR OF THE DAY ================= -->
+    <!-- Author of the day. filled using js -->
     <section class="section" id="authorOfDay">
       <div class="section-head">
         <h2>Author of the Day</h2>
@@ -141,7 +141,7 @@
       </div>
     </section>
 
-    <!-- ================= CATEGORIES ================= -->
+    <!-- Category shortcuts allow users to explore books by mood or genre -->
     <section class="section">
       <div class="section-head">
         <h2>Popular categories</h2>
@@ -160,7 +160,7 @@
 
   </main>
 
-  <!-- ================= FOOTER ================= -->
+  <!-- Footer Section -->
   <footer class="footer">
 
     <div class="footer-grid">
@@ -177,9 +177,10 @@
 
       <div class="newsletter">
         <h3>Newsletter</h3>
+        <!--Muted for secondary info-->
         <p class="muted">Weekly picks + gentle reading prompts.</p>
 
-        <!-- ✅ FIXED Newsletter Form -->
+        <!-- Newsletter Form -->
         <form id="newsletterForm" class="newsletter-form" action="#">
           <label for="newsletterEmail" class="sr-only">Email address</label>
 

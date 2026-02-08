@@ -1,12 +1,4 @@
-/* =========================
-   READIFY – FEEDBACK (Beginner Friendly)
-   - Form validation
-   - Save feedback in localStorage
-   - Confirmation message
-   - FAQ accordion
-========================= */
-
-/* HAMBURGER MENU */
+//hamburger menu
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu");
 
@@ -18,7 +10,7 @@ if (hamburgerBtn && navMenu) {
   });
 }
 
-/* FORM ELEMENTS */
+//Form elements
 const feedbackForm = document.getElementById("feedbackForm");
 const nameInput = document.getElementById("nameInput");
 const emailInput = document.getElementById("emailInput");
@@ -29,19 +21,19 @@ const clearFeedbackBtn = document.getElementById("clearFeedbackBtn");
 
 const savedFeedbackBox = document.getElementById("savedFeedbackBox");
 
-/* STORAGE KEY */
+//Local storage key. used to store feedback in local storage
 const FEEDBACK_KEY = "readify_feedback_list";
 
-/* Simple email check (beginner friendly) */
+//email validation
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
+//show feedback message
 function showMessage(text, isError) {
   feedbackMsg.textContent = text;
   feedbackMsg.style.color = isError ? "#b00020" : "#543310";
 }
-
+//load saved feedback from local storage
 function loadFeedbackList() {
   try {
     const raw = localStorage.getItem(FEEDBACK_KEY);
@@ -50,12 +42,12 @@ function loadFeedbackList() {
     return [];
   }
 }
-
+//Save feedback list back to localStorage
 function saveFeedbackList(list) {
   localStorage.setItem(FEEDBACK_KEY, JSON.stringify(list));
 }
 
-/* Show latest saved feedback (optional display) */
+//display the most recent feedback
 function renderLatestFeedback() {
   const list = loadFeedbackList();
   savedFeedbackBox.innerHTML = "";
@@ -77,7 +69,7 @@ function renderLatestFeedback() {
   `;
 }
 
-/* SUBMIT */
+//validates input and saves feedback
 feedbackForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -116,14 +108,14 @@ feedbackForm.addEventListener("submit", function (e) {
   renderLatestFeedback();
 });
 
-/* CLEAR SAVED */
+//clear all saved feedback from local storage
 clearFeedbackBtn.addEventListener("click", function () {
   localStorage.removeItem(FEEDBACK_KEY);
   showMessage("Saved feedback cleared.", false);
   renderLatestFeedback();
 });
 
-/* FAQ ACCORDION */
+//Expands and collapse faq answers
 const faqQuestions = document.querySelectorAll(".faq-question");
 
 faqQuestions.forEach(function (btn) {
@@ -133,5 +125,5 @@ faqQuestions.forEach(function (btn) {
   });
 });
 
-/* INIT */
+//load saved feedback when page opens
 renderLatestFeedback();

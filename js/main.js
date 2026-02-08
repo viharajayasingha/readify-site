@@ -1,26 +1,21 @@
-/* =========================
-   READIFY – HOME PAGE JS
-   Beginner friendly version
-========================= */
+//This file handles all interactive features on the Home page
 
-/* =========================
-   1) HAMBURGER MENU
-========================= */
+// Get hamburger button and navigation menu
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu");
 
+// Only run if both elements exist
 if (hamburgerBtn && navMenu) {
   hamburgerBtn.addEventListener("click", function () {
     navMenu.classList.toggle("show");
-
+    
     const isOpen = navMenu.classList.contains("show");
+    // Update aria-expanded for accessibility
     hamburgerBtn.setAttribute("aria-expanded", isOpen);
   });
 }
 
-/* =========================
-   2) AUTO-ROTATING QUOTES
-========================= */
+//Auto rotating quotes
 const quotes = [
   { text: "To go wrong in one's own way is better than to go right in someone else's.", author: "Fyodor Dostoevsky" },
   { text: "Many a book is like a key to unknown chambers within the castle of one’s own self.", author: "Franz Kafka" },
@@ -29,16 +24,17 @@ const quotes = [
 ];
 
 let quoteIndex = 0;
-
+// Function to show a quote on the page
 function showQuote() {
   const quoteText = document.getElementById("quoteText");
   const quoteAuthor = document.getElementById("quoteAuthor");
-
+  //stops if elements do not exist
   if (!quoteText || !quoteAuthor) return;
 
+  //update text content
   quoteText.textContent = "“" + quotes[quoteIndex].text + "”";
   quoteAuthor.textContent = "— " + quotes[quoteIndex].author;
-
+  //move to next quote
   quoteIndex++;
   if (quoteIndex >= quotes.length) quoteIndex = 0;
 }
@@ -46,10 +42,7 @@ function showQuote() {
 showQuote();
 setInterval(showQuote, 6000);
 
-/* =========================
-   3) AUTHOR OF THE DAY
-   (changes daily using date)
-========================= */
+
 const authors = [
   { name: "Rebecca Yarros", tag: "Fantasy • Romance", bio: "Known for bestselling fantasy novels such as Fourth Wing." },
   { name: "Donna Tartt", tag: "Literary Fiction", bio: "Famous for richly detailed novels like The Secret History." },
@@ -58,10 +51,12 @@ const authors = [
   { name: "Matt Haig", tag: "Contemporary • Fantasy", bio: "Known for emotional novels like The Midnight Library." }
 ];
 
+// Use today’s date to select an author
 const today = new Date();
 const dayNumber = today.getDate(); // 1–31
 const author = authors[dayNumber % authors.length];
 
+//update author content
 const aName = document.getElementById("aName");
 const aTag = document.getElementById("aTag");
 const aBio = document.getElementById("aBio");
@@ -70,16 +65,15 @@ if (aName) aName.textContent = author.name;
 if (aTag) aTag.textContent = author.tag;
 if (aBio) aBio.textContent = author.bio;
 
+//show last updated date
 const todayHint = document.getElementById("todayHint");
 if (todayHint) todayHint.textContent = "Updated: " + today.toDateString();
 
-/* =========================
-   4) NEWSLETTER (localStorage)
-========================= */
+//news letter. store in local storage
 const newsletterForm = document.getElementById("newsletterForm");
 const newsletterEmail = document.getElementById("newsletterEmail");
 const newsletterMsg = document.getElementById("newsletterMsg");
-
+//key used in local storage 
 const STORAGE_KEY = "readify_newsletter_email";
 
 // show saved email if already subscribed
@@ -88,11 +82,10 @@ if (savedEmail && newsletterEmail && newsletterMsg) {
   newsletterEmail.value = savedEmail;
   newsletterMsg.textContent = "You are already subscribed.";
 }
-
+//get form elements 
 if (newsletterForm && newsletterEmail && newsletterMsg) {
   newsletterForm.addEventListener("submit", function (e) {
     e.preventDefault();
-
     const email = newsletterEmail.value.trim();
 
     // simple email validation (basic pattern)
@@ -102,23 +95,18 @@ if (newsletterForm && newsletterEmail && newsletterMsg) {
       newsletterMsg.textContent = "Please enter a valid email address.";
       return;
     }
-
+    //save email to local storage
     localStorage.setItem(STORAGE_KEY, email);
     newsletterMsg.textContent = "Thank you for subscribing!";
     newsletterForm.reset();
   });
 }
 
-/* =========================
-   5) FOOTER YEAR
-========================= */
+//footer
 const yearElement = document.getElementById("year");
 if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-/* =========================
-   6) TRENDING BOOKS WITH COVERS
-   (Fill the right-side shelf)
-========================= */
+//displays trending featured books
 const trendingBooks = [
   { id: "fourth-wing", title: "Fourth Wing", author: "Rebecca Yarros", cover: "images/BookCovers/FourthWing.jpg" },
   { id: "the-secret-history", title: "The Secret History", author: "Donna Tartt", cover: "images/BookCovers/SecretHistory.jpg" },
@@ -126,7 +114,7 @@ const trendingBooks = [
   { id: "tender-is-the-flesh", title: "Tender Is the Flesh", author: "Agustina Bazterrica", cover: "images/BookCovers/Tenderistheflesh.jpg" },
   { id: "midnight-library", title: "The Midnight Library", author: "Matt Haig", cover: "images/BookCovers/MidnightLibrary.jpg" }
 ];
-
+//inserts book to the shelf
 const trendingShelf = document.getElementById("trendingShelf");
 
 if (trendingShelf) {
@@ -154,10 +142,7 @@ if (trendingShelf) {
   });
 }
 
-/* =========================
-   7) SERVICE WORKER (PWA)
-   (Must be in project root)
-========================= */
+//service worker pwa. enables offline support
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("service-worker.js")

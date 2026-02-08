@@ -1,5 +1,9 @@
-// js/data.js
+// This file stores all book data used across the website
+// The data is kept in one place so it can be reused on multiple pages
+// (Explorer, Recommender, Tracker, etc.)
 (function () {
+  // We attach the books array to the window object
+  // This allows other JavaScript files to access it using window.books
   window.books = [
     {
       id: "fourth-wing",
@@ -149,6 +153,7 @@
       ]
     }
   ];
-
+   
+  // Console log to confirm data.js is loaded correctly
   console.log("data.js loaded. Books:", window.books.length);
 })();

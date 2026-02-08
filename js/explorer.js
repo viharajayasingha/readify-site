@@ -1,41 +1,33 @@
-/* =========================
-   READIFY – EXPLORER (Beginner Friendly)
-   - Hamburger menu
-   - Uses books from data.js (window.books)
-   - Search + Genre filter
-   - Card click opens modal
-========================= */
-
-/* ---------- 0) BOOK DATA ---------- */
-/* IMPORTANT:
-   data.js should contain:
-   const books = [...];
-   window.books = books;
-*/
+//We load book data from data.js.
+//data.js puts the array into: window.books
+//So it can be reused in multiple pages
 if (!window.books) {
   console.error("Books not found. Make sure explorer.html loads data.js BEFORE explorer.js");
 }
+// Use window.books safely (if missing, use empty list to avoid breaking page)
 const bookData = window.books || [];
 
-/* ---------- 1) HAMBURGER MENU ---------- */
+//selects the hamburger button and the navigation menu
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu");
 
 if (hamburgerBtn && navMenu) {
+  //Runs the function only when the button is clicked
   hamburgerBtn.addEventListener("click", function () {
     navMenu.classList.toggle("show");
     const isOpen = navMenu.classList.contains("show");
+    //menu open and close
     hamburgerBtn.setAttribute("aria-expanded", isOpen);
   });
 }
 
-/* ---------- 2) ELEMENTS ---------- */
+//Get the main UI elements from explorer.html
 const bookGrid = document.getElementById("bookGrid");
 const searchInput = document.getElementById("searchInput");
 const genreSelect = document.getElementById("genreSelect");
 const clearBtn = document.getElementById("clearBtn");
 
-/* Modal elements */
+//popup details
 const bookModal = document.getElementById("bookModal");
 const modalCloseBtn = document.getElementById("modalCloseBtn");
 const modalCover = document.getElementById("modalCover");
@@ -46,12 +38,12 @@ const modalSynopsis = document.getElementById("modalSynopsis");
 const modalSeriesList = document.getElementById("modalSeriesList");
 const modalReviewsBody = document.getElementById("modalReviewsBody");
 
-/* Safety check */
+//safety check debugging if ids are wrong
 if (!bookGrid || !searchInput || !genreSelect || !clearBtn || !bookModal) {
   console.error("Explorer page elements not found. Check explorer.html IDs.");
 }
 
-/* ---------- 3) POPULATE GENRE DROPDOWN ---------- */
+//genre drop down
 function fillGenres() {
   if (!genreSelect) return;
 
@@ -62,7 +54,8 @@ function fillGenres() {
   bookData.forEach(function (b) {
     if (b.genre && !genres.includes(b.genre)) genres.push(b.genre);
   });
-
+  
+  //adds each genre as an option
   genres.forEach(function (g) {
     const opt = document.createElement("option");
     opt.value = g;
@@ -71,21 +64,24 @@ function fillGenres() {
   });
 }
 
-/* ---------- 4) RENDER BOOK CARDS ---------- */
+//creates the book cards and inserts them into the grid.
 function renderBooks(list) {
   if (!bookGrid) return;
 
+  //clear old cards first
   bookGrid.innerHTML = "";
-
+  //if no results show a simple message
   if (!list || list.length === 0) {
     bookGrid.innerHTML = `<p class="muted">No books found. Try a different search or genre.</p>`;
     return;
   }
 
+  //create one card per book
   list.forEach(function (book) {
     const card = document.createElement("div");
     card.className = "book-card";
 
+    // Card content (cover + title + author + genre)
     card.innerHTML = `
       <img class="book-card-img" src="${book.cover}" alt="${book.title} cover">
       <div class="book-card-body">
@@ -95,6 +91,7 @@ function renderBooks(list) {
       </div>
     `;
 
+    // When a user clicks a card, open modal with details
     card.addEventListener("click", function () {
       openModal(book);
     });
@@ -103,7 +100,7 @@ function renderBooks(list) {
   });
 }
 
-/* ---------- 5) FILTER LOGIC ---------- */
+//Filters books based on: text typed in search box selected genre dropdown
 function applyFilters() {
   if (!searchInput || !genreSelect) return;
 
@@ -114,7 +111,9 @@ function applyFilters() {
     const title = (book.title || "").toLowerCase();
     const author = (book.author || "").toLowerCase();
 
+    // Search matches title OR author
     const matchText = title.includes(text) || author.includes(text);
+    // Genre matches selected genre (or show all)
     const matchGenre = genre === "all" || book.genre === genre;
 
     return matchText && matchGenre;
@@ -123,10 +122,11 @@ function applyFilters() {
   renderBooks(filtered);
 }
 
-/* ---------- 6) MODAL OPEN/CLOSE ---------- */
+
 function openModal(book) {
   if (!bookModal) return;
 
+  // Fill modal details
   modalCover.src = book.cover;
   modalCover.alt = book.title + " cover";
   modalTitle.textContent = book.title;
@@ -164,26 +164,26 @@ function closeModal() {
   bookModal.setAttribute("aria-hidden", "true");
 }
 
-/* Close modal button */
+//close modal button
 if (modalCloseBtn) {
   modalCloseBtn.addEventListener("click", closeModal);
 }
 
-/* Close modal when clicking outside content */
+//close modal
 if (bookModal) {
   bookModal.addEventListener("click", function (e) {
     if (e.target === bookModal) closeModal();
   });
 }
 
-/* Close modal with Escape key */
+//Close modal when user presses ESC key
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape" && bookModal && bookModal.classList.contains("show")) {
     closeModal();
   }
 });
 
-/* ---------- 7) CLEAR BUTTON ---------- */
+//Clears the search input and resets genre filter
 if (clearBtn) {
   clearBtn.addEventListener("click", function () {
     if (!searchInput || !genreSelect) return;
@@ -193,11 +193,11 @@ if (clearBtn) {
   });
 }
 
-/* ---------- 8) EVENTS FOR FILTERING ---------- */
+//filter updates immedietly when changing genre and searching
 if (searchInput) searchInput.addEventListener("input", applyFilters);
 if (genreSelect) genreSelect.addEventListener("change", applyFilters);
 
-/* ---------- 9) OPTIONAL: If Recommender stored a selected book ---------- */
+//If Home/Recommender saved a selected book into localStorage, Explorer can auto-open that book in the modal.
 (function focusSelectedBook() {
   const raw = localStorage.getItem("readify_selected_book");
   if (!raw) return;
@@ -205,7 +205,7 @@ if (genreSelect) genreSelect.addEventListener("change", applyFilters);
   try {
     const selected = JSON.parse(raw);
 
-    // best: store id
+    // store id
     let found = null;
 
     if (selected.id) {
@@ -214,7 +214,7 @@ if (genreSelect) genreSelect.addEventListener("change", applyFilters);
       });
     }
 
-    // fallback: match title + author
+    // match title and author
     if (!found && selected.title && selected.author) {
       found = bookData.find(function (b) {
         return b.title === selected.title && b.author === selected.author;
@@ -227,7 +227,7 @@ if (genreSelect) genreSelect.addEventListener("change", applyFilters);
   }
 })();
 
-/* ---------- INIT ---------- */
+//When page loads: Fill genre dropdown, Show all books in grid
 if (genreSelect && bookGrid) {
   fillGenres();
   renderBooks(bookData);

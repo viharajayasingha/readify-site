@@ -6,7 +6,7 @@
    - Save to localStorage
 ========================= */
 
-/* ---------- 1) HAMBURGER MENU ---------- */
+//hamburger menu
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu");
 
@@ -18,7 +18,7 @@ if (hamburgerBtn && navMenu) {
   });
 }
 
-/* ---------- 2) ELEMENTS ---------- */
+//elements 
 const trackerForm = document.getElementById("trackerForm");
 const totalPagesEl = document.getElementById("totalPages");
 const pagesReadEl = document.getElementById("pagesRead");
@@ -36,28 +36,29 @@ const finishDateText = document.getElementById("finishDateText");
 const saveBtn = document.getElementById("saveBtn");
 const clearBtn = document.getElementById("clearBtn");
 
-/* Progress wrapper (to update aria-valuenow) */
+// Progress wrapper is used to update aria-valuenow (screen readers)
 const progressWrap = document.querySelector(".progress-wrap");
 
-/* Safety: if the page doesn’t have required elements, stop */
+// Safety: if the page doesn’t have required elements, stop 
 if (!trackerForm || !totalPagesEl || !pagesReadEl || !speedEl) {
   console.error("Tracker elements missing. Check tracker.html IDs.");
 }
 
-/* ---------- 3) STORAGE ---------- */
+//key name used inside the browser storage. keeps the user’s progress even after refresh.
 const TRACKER_KEY = "readify_tracker_progress";
 
-/* ---------- 4) HELPERS ---------- */
+// Show a message below the form
 function showMessage(text, isError) {
   if (!formMsg) return;
   formMsg.textContent = text;
   formMsg.style.color = isError ? "#b00020" : "#543310";
 }
-
+// Keep a number inside a safe range 
 function clamp(num, min, max) {
   return Math.min(Math.max(num, min), max);
 }
 
+// Reset results area back to default values
 function resetResultsUI() {
   if (resultsBox) resultsBox.style.display = "none";
 
@@ -86,6 +87,7 @@ function calculateAndShow(totalPages, pagesRead, speed) {
     daysToFinish = 0;
     finishDateTextValue = "Completed";
   } else {
+    // Round up to full days
     daysToFinish = Math.ceil(remaining / speed);
     const finishDate = new Date();
     finishDate.setDate(finishDate.getDate() + daysToFinish);
@@ -107,7 +109,7 @@ function calculateAndShow(totalPages, pagesRead, speed) {
   if (resultsBox) resultsBox.style.display = "block";
 }
 
-/* ---------- 5) FORM SUBMIT (CALCULATE) ---------- */
+//form submit (calculation)
 if (trackerForm) {
   trackerForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -121,6 +123,7 @@ if (trackerForm) {
       showMessage("Total pages must be more than 0.", true);
       return;
     }
+    
     if (!Number.isFinite(pagesRead) || pagesRead < 0 || pagesRead > totalPages) {
       showMessage("Pages read must be between 0 and total pages.", true);
       return;
@@ -135,7 +138,7 @@ if (trackerForm) {
   });
 }
 
-/* ---------- 6) SAVE BUTTON ---------- */
+//save button
 if (saveBtn) {
   saveBtn.addEventListener("click", function () {
     const totalPages = Number(totalPagesEl.value);
@@ -162,7 +165,7 @@ if (saveBtn) {
   });
 }
 
-/* ---------- 7) CLEAR BUTTON ---------- */
+//Clears: form inputs, localStorage saved progress, results section
 if (clearBtn) {
   clearBtn.addEventListener("click", function () {
     if (trackerForm) trackerForm.reset();
@@ -172,9 +175,10 @@ if (clearBtn) {
   });
 }
 
-/* ---------- 8) LOAD SAVED DATA ON PAGE LOAD ---------- */
+//load data. When the page opens: Check if localStorage has saved progress, If yes → fill inputs + show results
 (function loadSaved() {
   const raw = localStorage.getItem(TRACKER_KEY);
+  //if nothing saved keep ui clean
   if (!raw) {
     resetResultsUI();
     return;
@@ -183,6 +187,7 @@ if (clearBtn) {
   try {
     const saved = JSON.parse(raw);
 
+    //fill inputs 
     totalPagesEl.value = saved.totalPages ?? "";
     pagesReadEl.value = saved.pagesRead ?? "";
     speedEl.value = saved.speed ?? "";
@@ -200,10 +205,12 @@ if (clearBtn) {
       calculateAndShow(totalPages, pagesRead, speed);
       showMessage("Loaded saved progress.", false);
     } else {
+      //if stored data is wrong delete it
       localStorage.removeItem(TRACKER_KEY);
       resetResultsUI();
     }
   } catch (err) {
+    //if json is broken delete it
     localStorage.removeItem(TRACKER_KEY);
     resetResultsUI();
   }

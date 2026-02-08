@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Readify | The Bookshelf</title>
-
+  <!--Pwa branding assets. favicon + manifest for installable web app-->
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/style.css">
@@ -15,22 +15,22 @@
   <!-- NAVBAR (same style/classes as home) -->
   <header class="header">
     <nav class="navbar">
-
+   
       <a class="brand" href="index.html">
         <span class="brand-icon">
           <img src="images/Discover___Track___Stay_in_flow-removebg-preview.png" alt="Readify logo">
         </span>
       </a>
-
+      <!-- Search bar. aria-label ensures accessibility even without a visible label -->
       <form class="nav-search" role="search">
         <input type="search" placeholder="Search books, authors, genres..." aria-label="Search books">
         <button type="button" class="search-btn" aria-label="Search">
           <img src="images/search-icon.png" alt="Search icon">
         </button>
       </form>
-
+ 
       <button class="hamburger" id="hamburgerBtn"
-        aria-label="Open menu"
+        aria-label="Open menu"  
         aria-expanded="false"
         aria-controls="navMenu">
         <span class="bar"></span>
@@ -57,7 +57,7 @@
         <p class="muted">Search or filter books. Click a card to see details.</p>
       </div>
 
-      <!-- FILTER BAR -->
+      <!-- book search/ filter and result grid -->
       <div class="filter-bar">
         <input id="searchInput" type="text" placeholder="Search by title or author..." aria-label="Search by title or author">
         <select id="genreSelect" aria-label="Filter by genre">
@@ -66,19 +66,21 @@
         <button class="btn primary" id="clearBtn" type="button">Clear</button>
       </div>
 
-      <!-- BOOK GRID -->
+      <!-- Book grid -->
       <div class="book-grid" id="bookGrid">
         <!-- cards inserted by JS -->
       </div>
     </section>
   </main>
 
-  <!-- MODAL -->
+  <!-- book details modal. hidden by defaul. opens when clicked -->
   <div class="modal" id="bookModal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+       <!-- Close button for keyboard + screen-reader users -->
       <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">✖</button>
 
       <div class="modal-top">
+        <!--default source so the image tag is always valid-->
         <img id="modalCover" class="modal-cover" src="images/placeholder.png" alt="Book cover">
         <div class="modal-meta">
           <h3 id="modalTitle">Title</h3>
@@ -94,6 +96,7 @@
       <ul id="modalSeriesList"></ul>
 
       <h4>Ratings & Reviews</h4>
+      <!--allow horizontal scrolling on mobile-->
       <div class="table-wrap">
         <table class="review-table">
           <thead>
@@ -103,6 +106,7 @@
               <th>Review</th>
             </tr>
           </thead>
+          <!--js fills rows here-->
           <tbody id="modalReviewsBody"></tbody>
         </table>
       </div>
