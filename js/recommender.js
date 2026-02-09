@@ -101,6 +101,7 @@ function pickRandomBook() {
     return;
   }
 
+  //random item
   const randomIndex = Math.floor(Math.random() * filtered.length);
   currentPick = filtered[randomIndex];
 
@@ -138,7 +139,7 @@ function loadList() {
     return [];
   }
 }
-
+//save to local storage
 function saveList(list) {
   localStorage.setItem(LIST_KEY, JSON.stringify(list));
 }

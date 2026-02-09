@@ -1,10 +1,4 @@
-/* =========================
-   READIFY – TRACKER (Beginner Friendly)
-   - Form input
-   - Calculate % + finish time
-   - Progress bar
-   - Save to localStorage
-========================= */
+
 
 //hamburger menu
 const hamburgerBtn = document.getElementById("hamburgerBtn");
@@ -25,7 +19,7 @@ const pagesReadEl = document.getElementById("pagesRead");
 const speedEl = document.getElementById("speed");
 
 const formMsg = document.getElementById("formMsg");
-const resultsBox = document.getElementById("resultsBox");
+const resultsBox = document.getElementById("resultsBox"); 
 
 const percentText = document.getElementById("percentText");
 const remainingText = document.getElementById("remainingText");
